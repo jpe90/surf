@@ -1418,7 +1418,8 @@ createwindow(Client *c)
 		w = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
 		wmstr = g_path_get_basename(argv0);
-		gtk_window_set_wmclass(GTK_WINDOW(w), wmstr, "Surf");
+		//gtk_window_set_wmclass(GTK_WINDOW(w), wmstr, "Surf");
+        gtk_window_set_role(GTK_WINDOW(w), "Surf");
 		g_free(wmstr);
 
 		wmstr = g_strdup_printf("%s[%lu]", "Surf", c->pageid);
@@ -1848,7 +1849,7 @@ msgext(Client *c, char type, const Arg *a)
 	static char msg[MSGBUFSZ];
 	int ret;
 
-	if ((ret = snprintf(msg, sizeof(msg), "%c%c%c%c",
+	if ((ret = snprintf(msg, sizeof(msg), "%c%lu%c%c",
 	                    4, c->pageid, type, a->i))
 	    >= sizeof(msg)) {
 		fprintf(stderr, "surf: message too long: %d\n", ret);
@@ -2111,7 +2112,11 @@ main(int argc, char *argv[])
 	if (argc > 0)
 		arg.v = argv[0];
 	else
+#ifdef HOMEPAGE
+		arg.v = HOMEPAGE;
+#else
 		arg.v = "about:blank";
+#endif
 
 	setup();
 	c = newclient(NULL);
