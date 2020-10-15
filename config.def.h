@@ -199,8 +199,8 @@ static Key keys[] = {
 	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_m,      toggle,     { .i = Style } },
 
     /* Bookmarking hotkeys */
-    { MODKEY,               GDK_KEY_x,      spawn,      BM_PICK },
-    { MODKEY|GDK_SHIFT_MASK,GDK_KEY_x,      spawn,      BM_ADD },
+    { MODKEY,               GDK_KEY_w,      spawn,      BM_PICK },
+    { MODKEY|GDK_SHIFT_MASK,GDK_KEY_w,      spawn,      BM_ADD },
 };
 
 /* button definitions */
